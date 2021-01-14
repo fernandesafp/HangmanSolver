@@ -1,6 +1,6 @@
 import unidecode #To remove accentted characters during comparisons
 
-def SortByGivenWord(freqList, word, nots):
+def SortByGivenWord(freqList, word, notLetters, notWords):
     newFreqList = []
     for freqWord in freqList:
         #First checks if the length are the same
@@ -8,8 +8,15 @@ def SortByGivenWord(freqList, word, nots):
             wordIsPossible = True
 
             #Checks if freqWord contains any of the letters that are given as not there
-            for _not in nots:
-                if _not in unidecode.unidecode(freqWord):
+            for notLetter in notLetters:
+                if notLetter in unidecode.unidecode(freqWord):
+                    wordIsPossible = False
+                    break
+
+            #Checks if freqWord contains any notWord
+            notWordsSplit = notWords.replace('\n',',').split(',')
+            for notWord in notWordsSplit:
+                if notWord and notWord in freqWord:
                     wordIsPossible = False
                     break
 
