@@ -1,5 +1,4 @@
 import os
-import unidecode #To remove accentted characters during comparisons
 from tkinter import *
 from tkinter import messagebox
 
@@ -8,10 +7,10 @@ from Modules.LanguagesConnector import GetLanguages, GetFrequencyArr
 
 currentDirectory = os.path.dirname(os.path.realpath(__file__))
 languageDirectory = currentDirectory + '/Languages/'
-supportedLanguages = GetLanguages(languageDirectory)
+supportedLanguages, languagesDict = GetLanguages(languageDirectory)
 
 def UpdateList():
-    freqList = GetFrequencyArr(languageDirectory + selectedLanguage.get() + '.txt')
+    freqList = GetFrequencyArr(languageDirectory + languagesDict[selectedLanguage.get()] + '.txt')
     sortedFreqList = SortByGivenWord(freqList, givenWord.get(), wrongLetters.get(), wrongWords.get())
     newList = '\n'.join(sortedFreqList[0:10])
     possibleWordsList['text'] = 'Possible words:\n' + newList

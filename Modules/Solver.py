@@ -1,4 +1,4 @@
-import unidecode #To remove accentted characters during comparisons
+import unidecode #To remove accented characters during comparisons
 
 def SortByGivenWord(freqList, word, notLetters, notWords):
     newFreqList = []
